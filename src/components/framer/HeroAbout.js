@@ -1,13 +1,13 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { portfolioItems } from "@/data/portfolio";
+import  {portfolioItems} from "@/data/portfolio";
 
 export default function HeroAbout() {
   const trackRef = useRef(null);
   const xRef = useRef(0);
   const widthRef = useRef(0);
-  const router = useRouter();
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const track = trackRef.current;
@@ -16,12 +16,10 @@ export default function HeroAbout() {
     let raf;
     const speed = 0.6;
 
-    // ✅ wait for images to load, then measure width
     const measure = () => {
       widthRef.current = track.scrollWidth / 3;
     };
 
-    // ensure measurement after layout
     requestAnimationFrame(measure);
 
     const animate = () => {
@@ -30,16 +28,13 @@ export default function HeroAbout() {
         return;
       }
 
-      // RIGHT → LEFT
       xRef.current -= speed;
 
-      // seamless loop
       if (Math.abs(xRef.current) >= widthRef.current) {
         xRef.current = 0;
       }
 
       track.style.transform = `translateX(${xRef.current}px)`;
-
       raf = requestAnimationFrame(animate);
     };
 
@@ -57,20 +52,25 @@ export default function HeroAbout() {
     ...portfolioItems,
     ...portfolioItems,
   ];
-  const handleMouseMove = (e) => {
+
+  const router = useRouter();
+
+  const handleMouseMove = (e, itemId) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    setCursorPos(prev => ({ ...prev, [itemId]: { x, y } }));
+  };
 
-    e.currentTarget.style.setProperty("--x", `${x}px`);
-    e.currentTarget.style.setProperty("--y", `${y}px`);
+  const handleClick = (id) => {
+    router.push(`/work/${id}`);
   };
 
   return (
-    <section  className="relative min-h-screen w-full bg-[#0a0a0a] overflow-hidden">
+    <section className="relative w-full bg-[#0a0a0a] overflow-hidden">
       {/* TITLE */}
-      <div className="relative z-30 flex justify-center pt-28 pb-12">
-        <h1 className="text-[clamp(3rem,8vw,9rem)] font-light leading-[0.9]">
+      <div className="relative z-30 flex items-center justify-center h-screen">
+        <h1 className="text-[clamp(3rem,8vw,9rem)] font-light leading-[0.9] text-center">
           <span className="text-white">LET&apos;EM </span>
           <span className="italic font-serif text-white">KNOW</span>
         </h1>
@@ -78,96 +78,89 @@ export default function HeroAbout() {
 
       {/* STAGE */}
       <div
-      id="herosection"
-        className="relative w-full h-[90vh] mt-32"
-        style={{ perspective: "2600px" }}
+        id="herosection"
+        className="relative flex items-center justify-center overflow-visible"
+        style={{ 
+          transform: "perspective(1200px) rotateX(20deg) rotateY(20deg)",
+          width: "120%",
+          height: "min-content",
+          padding: 0,
+          position: "relative"
+        }}
       >
-        {/* MASK */}
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative w-full overflow-visible">
           {/* PLANE */}
           <div
-            className="absolute -left-1/2 top-0"
+            className="relative"
             style={{
-              width: "160vw",
-              transform: `
-                rotateX(8deg)
-                rotateY(6deg)
-                rotateZ(5deg)
-              `,
-              transformOrigin: "left bottom",
               transformStyle: "preserve-3d",
             }}
           >
             {/* FADES */}
-            <div className="absolute left-0 inset-y-0 w-72 bg-gradient-to-r from-[#0a0a0a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute right-0 inset-y-0 w-72 bg-gradient-to-l from-[#0a0a0a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute left-0 inset-y-0 w-72 bg-gradient-to-r from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} />
+            <div className="absolute right-0 inset-y-0 w-72 bg-gradient-to-l from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} />
 
             {/* TRACK */}
             <div
               ref={trackRef}
-              className="flex items-end gap-6 pl-[20%] will-change-transform"
-              style={{ transformStyle: "preserve-3d" }}
+              className="flex items-end gap-5 will-change-transform"
+              style={{ 
+                transformStyle: "preserve-3d",
+                flexDirection: "row",
+                position: "relative"
+              }}
             >
-              {slides.map((item, i) => (
-                <div
-                  key={`${item.id}-${i}`}
-                  onClick={() => router.push(`/work/${item.id}`)}
-                  onMouseMove={handleMouseMove}
-                  className="group relative flex-shrink-0 cursor-pointer"
-                  style={{ "--x": "50%", "--y": "50%" }}
-                >
-                  {/* IMAGE */}
+              {slides.map((item, i) => {
+                const itemKey = `${item.id}-${i}`;
+                const pos = cursorPos[itemKey] || { x: 0, y: 0 };
+                
+                return (
                   <div
-                    className="relative w-[420px] h-[580px] overflow-hidden"
-                    style={{ boxShadow: "0 40px 80px rgba(0,0,0,0.9)" }}
+                    key={itemKey}
+                    onClick={() => handleClick(item.id)}
+                    onMouseMove={(e) => handleMouseMove(e, itemKey)}
+                    className="group relative flex-shrink-0 cursor-pointer"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      draggable={false}
-                    />
-
-                    {/* DARK OVERLAY */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                    {/* CENTERED NAME */}
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white text-2xl font-medium text-center px-6">
-                        {item.name}
-                      </p>
-                    </div>
-
-                    {/* CURSOR FOLLOW VIEW */}
+                    {/* IMAGE */}
                     <div
-                      className="pointer-events-none absolute z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                      style={{
-                        left: "var(--x)",
-                        top: "var(--y)",
-                        transform: "translate(-50%, -50%)",
-                      }}
+                      className="relative w-[420px] h-[580px] overflow-hidden"
+                      style={{ boxShadow: "0 40px 80px rgba(0,0,0,0.9)" }}
                     >
-                      <span
-                        className="
-                          px-4 py-1.5
-                          text-xs font-medium tracking-wide
-                          text-white
-                          rounded-full
-                          bg-black/70
-                          backdrop-blur-md
-                          shadow-lg
-                        "
-                      >
-                        VIEW
-                      </span>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        draggable={false}
+                      />
 
+                      {/* DARK OVERLAY */}
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* CENTERED NAME */}
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-white text-2xl font-medium text-center px-6">
+                          {item.name}
+                        </p>
+                      </div>
+
+                      {/* CURSOR FOLLOW VIEW */}
+                      <div
+                        className="pointer-events-none absolute z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        style={{
+                          left: `${pos.x}px`,
+                          top: `${pos.y}px`,
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        <span className="px-4 py-1.5 text-xs font-medium tracking-wide text-white rounded-full bg-black/70 backdrop-blur-md shadow-lg">
+                          VIEW
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-
+                );
+              })}
             </div>
-
           </div>
         </div>
       </div>

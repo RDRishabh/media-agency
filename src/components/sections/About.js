@@ -36,14 +36,14 @@ export default function About() {
           {/* Text content */}
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-light leading-tight text-white/70">
-              We transform ideas into visual stories that{" "}
+              We transform <span className="text-white font-semibold">ideas</span> into <span className="text-white font-semibold">visual stories</span> that{" "}
               <span className="block text-white font-medium">
                 inspire and connect
               </span>
             </h2>
 
             <p className="mt-4 sm:mt-6 text-sm sm:text-base text-white/60 max-w-xl leading-relaxed">
-              We're a creative agency that gets it. From scroll-stopping reels to brand-defining campaigns, we craft content that connects, converts, and leaves a lasting impression.
+              We're a <span className="text-white font-medium">creative agency</span> that gets it. From <span className="text-white font-medium">scroll-stopping reels</span> to <span className="text-white font-medium">brand-defining campaigns</span>, we craft content that <span className="text-white font-medium">connects</span>, <span className="text-white font-medium">converts</span>, and leaves a <span className="text-white font-medium">lasting impression</span>.
             </p>
 
             {/* CTA */}

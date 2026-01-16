@@ -11,7 +11,7 @@ export default function WorkDetail() {
   if (!item) return <div className="text-white p-20">Not found</div>;
 
   return (
-    <section className="min-h-screen bg-black text-white py-24 overflow-x-hidden">
+    <section className="min-h-screen bg-black text-white pt-32 sm:pt-40 pb-24 overflow-x-hidden">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* HEADER */}
         <h1 className="text-5xl font-light mb-16">{item.name}</h1>
