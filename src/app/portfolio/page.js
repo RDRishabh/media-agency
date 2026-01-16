@@ -56,7 +56,7 @@ function PortfolioCard({ image, name, tag, link }) {
         <img
           src={image}
           alt={name}
-          className="w-full h-[420px] object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-105 object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
