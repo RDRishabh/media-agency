@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 
+// Replace this with your Google Apps Script Web App URL after deployment
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "YOUR_GOOGLE_SCRIPT_URL_HERE";
+
 export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -16,12 +21,34 @@ export default function ContactUs() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("type", "contact");
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("message", formData.message);
+      formDataToSend.append("timestamp", new Date().toISOString());
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formDataToSend,
+      });
+
+      // With no-cors mode, we can't read the response, so we assume success
+      setStatus({ type: "success", message: "Thank you! We'll get back to you soon." });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus({ type: "error", message: "Something went wrong. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -146,10 +173,20 @@ export default function ContactUs() {
               {/* Submit */}
               <button
                 type="submit"
-                className="mt-8 px-8 py-3 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition"
+                disabled={isSubmitting}
+                className="mt-8 px-8 py-3 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
+
+              {/* Status message */}
+              {status.message && (
+                <p className={`mt-4 text-sm ${
+                  status.type === "success" ? "text-green-400" : "text-red-400"
+                }`}>
+                  {status.message}
+                </p>
+              )}
             </form>
           </div>
         </div>

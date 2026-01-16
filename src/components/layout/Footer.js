@@ -1,6 +1,44 @@
 "use client";
 
+import { useState } from "react";
+
+// Replace this with your Google Apps Script Web App URL after deployment
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "YOUR_GOOGLE_SCRIPT_URL_HERE";
+
 export default function Footer() {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+
+    setIsSubmitting(true);
+    setNewsletterStatus({ type: "", message: "" });
+
+    try {
+      const formData = new FormData();
+      formData.append("type", "newsletter");
+      formData.append("email", newsletterEmail);
+      formData.append("timestamp", new Date().toISOString());
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      setNewsletterStatus({ type: "success", message: "Subscribed!" });
+      setNewsletterEmail("");
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      setNewsletterStatus({ type: "error", message: "Failed to subscribe." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSmoothScroll = (e, targetId) => {
     e.preventDefault();
     const element = document.querySelector(targetId);
@@ -34,16 +72,30 @@ export default function Footer() {
             </div>
 
             <div className="mt-8">
-              <div className="flex flex-col sm:flex-row items-stretch gap-3 border-b border-white/30 pb-3">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row items-stretch gap-3 border-b border-white/30 pb-3">
                 <input
                   type="email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Enter your email address"
+                  required
                   className="bg-transparent flex-1 outline-none text-sm px-1"
                 />
-                <button className="px-6 py-2 rounded-full bg-white text-black text-sm font-medium w-full sm:w-auto">
-                  Subscribe
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-2 rounded-full bg-white text-black text-sm font-medium w-full sm:w-auto disabled:opacity-50"
+                >
+                  {isSubmitting ? "..." : "Subscribe"}
                 </button>
-              </div>
+              </form>
+              {newsletterStatus.message && (
+                <p className={`mt-2 text-xs ${
+                  newsletterStatus.type === "success" ? "text-green-400" : "text-red-400"
+                }`}>
+                  {newsletterStatus.message}
+                </p>
+              )}
             </div>
           </div>
         </div>
