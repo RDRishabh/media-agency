@@ -1,6 +1,6 @@
 export default function TrustedBrands() {
   return (
-    <section className="w-full border-t border-white/10 py-8 sm:py-10">
+    <section className="w-full border-white/10 py-8 sm:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col md:flex-row items-center gap-6 md:gap-8">
         
         {/* Left text */}
