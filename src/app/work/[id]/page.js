@@ -40,14 +40,14 @@ export default function WorkDetail() {
             <p className="text-lg text-white/80 leading-relaxed">
               {item.description}
             </p>
-            <p className="mt-8 text-white/60 italic">
+            {/* <p className="mt-8 text-white/60 italic">
               {item.tagline}
-            </p>
+            </p> */}
           </div>
 
           {/* RIGHT */}
           <div className="space-y-10">
-            <div>
+            {/* <div>
               <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
                 Services
               </h3>
@@ -56,7 +56,7 @@ export default function WorkDetail() {
                   <li key={i}>{s}</li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             {/* Social/Link Icons */}
             {item.link && item.link !== "#" && (
