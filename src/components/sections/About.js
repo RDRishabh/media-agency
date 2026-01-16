@@ -43,16 +43,13 @@ export default function About() {
             </h2>
 
             <p className="mt-4 sm:mt-6 text-sm sm:text-base text-white/60 max-w-xl leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque
-              et nulla vestibulum lacus ultrices proin nunc semper urna urna
-              nunc aliquam eleifend sagittis elementum molestie laoreet nulla
-              auctor eu mi at vitae tortor tortor at sollicitudin quam mattis leo.
+              We're a creative agency that gets it. From scroll-stopping reels to brand-defining campaigns, we craft content that connects, converts, and leaves a lasting impression.
             </p>
 
             {/* CTA */}
-            <button className="mt-8 sm:mt-10 px-6 sm:px-8 py-3 text-white rounded-full border border-white/30 text-sm hover:border-white transition">
+            {/* <button className="mt-8 sm:mt-10 px-6 sm:px-8 py-3 text-white rounded-full border border-white/30 text-sm hover:border-white transition">
               Learn more
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

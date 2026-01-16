@@ -6,7 +6,7 @@ const TESTIMONIALS = [
   {
     id: 1,
     title: "Amazing craft, professional and delivered on time!",
-    text: "Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque et nulla vestibulum lacus ultrices proin nunc.",
+    text: "They understood our vision from day one and delivered content that truly resonated with our audience. Exceptional work.",
     author: "John Carter",
     role: "Founder at Converra",
     image: "/images/testimonials/1.jpg",
@@ -14,7 +14,7 @@ const TESTIMONIALS = [
   {
     id: 2,
     title: "Captured our vision perfectly. Truly outstanding.",
-    text: "Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque et nulla vestibulum lacus ultrices proin nunc.",
+    text: "The team brought a fresh perspective to our brand. Their creative approach helped us connect with a whole new audience.",
     author: "Sophie Moore",
     role: "VP of Design at Venture",
     image: "/images/testimonials/2.jpg",
@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   {
     id: 3,
     title: "A seamless experience from start to finish.",
-    text: "Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque et nulla vestibulum lacus ultrices proin nunc.",
+    text: "From ideation to final delivery, the process was smooth and the results exceeded our expectations. Highly recommend.",
     author: "Alex Johnson",
     role: "Creative Director",
     image: "/images/testimonials/3.jpg",

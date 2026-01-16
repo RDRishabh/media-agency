@@ -29,15 +29,14 @@ export default function Hero() {
         <div className="max-w-2xl">
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light leading-tight text-white/70">
-            Bringing brands to life with{" "}
+            We build content that stops the scroll.{" "}
             <span className="block text-white font-medium">
-              impactful video content
+              Design that feels. Strategy that sells.
             </span>
           </h1>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-white/60 max-w-lg">
-            Lorem ipsum dolor sit amet consectetur purus curabitur diam
-            ultricies placerat diam id donec augue amet ac.
+            Whether it's a reel, a pitch, a campaign, or a brand - we don't just make it look good, we make it work.
           </p>
 
           {/* CTA buttons */}

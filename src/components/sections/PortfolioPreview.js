@@ -31,9 +31,7 @@ export default function PortfolioPreview() {
           </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-white/60 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque
-            et nulla vestibulum lacus ultrices proin nunc semper urna urna
-            nunc aliquam eleifend sagittis elementum.
+            From brand films to social content, here's a glimpse of the work we've crafted for brands that wanted to stand out.
           </p>
         </div>
 
@@ -56,12 +54,12 @@ export default function PortfolioPreview() {
 
         {/* View all */}
         <div className="mt-12 sm:mt-16 md:mt-20 text-center">
-          <a
+          {/* <a
             href="/portfolio"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 rounded-full border border-white/30 text-sm hover:border-white transition"
           >
             View all work
-          </a>
+          </a> */}
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ const SERVICES = [
     id: "02",
     title: "Corporate",
     description:
-      "Lorem ipsum dolor sit amet consectetur ultrices dignissim hendrerit in volutpat fames pretium neque hac mauris ornare in odio at consequat.",
+      "Professional corporate videos that communicate your brand's vision, culture, and values with clarity and polish.",
     image: "/images/services/corporate.jpg",
   },
   {
@@ -80,9 +80,7 @@ export default function Services() {
           </h2>
 
           <p className="text-sm sm:text-base text-white/60 max-w-md leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque
-            et nulla vestibulum lacus ultrices proin nunc semper urna urna nunc
-            aliquam eleifend sagittis.
+            We don't just create content - we build experiences. From concept to execution, every frame is designed to connect and convert.
           </p>
         </div>
 
