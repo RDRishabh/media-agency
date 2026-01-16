@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <header className="absolute top-0 left-0 w-full z-50">
-      <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl pr-2 py-6 flex items-center justify-between">
         
         {/* Logo */}
         <div className="text-xl font-bold">

@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-linear-to-r from-black via-black/70 to-black/30" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 min-h-screen flex items-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-16 sm:px-6 min-h-screen flex items-center">
         <div className="max-w-2xl">
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light leading-tight text-white/70">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SERVICES = [
   {
@@ -27,7 +27,33 @@ const SERVICES = [
 ];
 
 export default function Services() {
-  const [active, setActive] = useState("02");
+  const [active, setActive] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleClick = (id) => {
+    if (isMobile) {
+      setActive(active === id ? null : id);
+    }
+  };
+
+  const handleMouseEnter = (id) => {
+    if (!isMobile) {
+      setActive(id);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setActive(null);
+    }
+  };
 
   return (
     <section
@@ -66,10 +92,15 @@ export default function Services() {
             const isActive = active === service.id;
 
             return (
-              <div key={service.id} className="border-b border-white/10">
+              <div 
+                key={service.id} 
+                className="border-b border-white/10"
+                onMouseEnter={() => handleMouseEnter(service.id)}
+                onMouseLeave={handleMouseLeave}
+              >
                 {/* Row */}
                 <button
-                  onClick={() => setActive(service.id)}
+                  onClick={() => handleClick(service.id)}
                   className="w-full py-6 sm:py-8 md:py-10 flex items-center justify-between text-left group gap-4"
                 >
                   <div className="flex items-center gap-4 sm:gap-6">
@@ -87,21 +118,27 @@ export default function Services() {
                 </button>
 
                 {/* Expanded content */}
-                {isActive && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-14 pb-10 md:pb-14">
-                    <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl">
-                      {service.description}
-                    </p>
+                <div 
+                  className={`grid transition-all duration-500 ease-in-out ${
+                    isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-14 pb-10 md:pb-14">
+                      <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl">
+                        {service.description}
+                      </p>
 
-                    <div className="rounded-2xl overflow-hidden">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-55 sm:h-70 md:h-80 object-cover"
-                      />
+                      <div className="rounded-2xl overflow-hidden">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-55 sm:h-70 md:h-80 object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

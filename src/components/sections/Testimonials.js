@@ -100,48 +100,36 @@ export default function Testimonials() {
             ))}
           </div>
 
-          {/* Controls (desktop/tablet) */}
+          {/* Controls (desktop/tablet) - hidden, moved to bottom */}
+        </div>
+
+        {/* Bottom controls with arrows and dots */}
+        <div className="mt-8 flex justify-center items-center gap-8 sm:gap-16 md:gap-24">
           <button
             onClick={prev}
-            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/30 items-center justify-center hover:border-white transition"
+            className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:border-white transition"
           >
             ←
           </button>
 
+          {/* Dots */}
+          <div className="flex gap-2">
+            {TESTIMONIALS.map((_, idx) => (
+              <span
+                key={idx}
+                className={`w-2 h-2 rounded-full transition ${
+                  idx === active ? "bg-white" : "bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
+
           <button
             onClick={next}
-            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/30 items-center justify-center hover:border-white transition"
+            className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:border-white transition"
           >
             →
           </button>
-        </div>
-
-        {/* Mobile controls */}
-        <div className="sm:hidden mt-6 flex justify-center gap-6">
-          <button
-            onClick={prev}
-            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center"
-          >
-            ←
-          </button>
-          <button
-            onClick={next}
-            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center"
-          >
-            →
-          </button>
-        </div>
-
-        {/* Dots */}
-        <div className="mt-8 flex justify-center gap-2">
-          {TESTIMONIALS.map((_, idx) => (
-            <span
-              key={idx}
-              className={`w-2 h-2 rounded-full transition ${
-                idx === active ? "bg-white" : "bg-white/30"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

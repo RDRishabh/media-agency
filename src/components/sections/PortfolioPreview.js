@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { portfolioItems } from "@/data/portfolio";
 
 export default function PortfolioPreview() {
   const previewItems = portfolioItems.slice(0, 12);
+  const [hoveredId, setHoveredId] = useState(null);
 
   return (
     <section
@@ -38,11 +42,14 @@ export default function PortfolioPreview() {
           {previewItems.map((item) => (
             <PortfolioCard
               key={item.id}
+              id={item.id}
               image={item.image}
               name={item.name}
               tag={item.tag}
               tagline={item.tagline}
               link={item.link}
+              hoveredId={hoveredId}
+              setHoveredId={setHoveredId}
             />
           ))}
         </div>
@@ -62,20 +69,33 @@ export default function PortfolioPreview() {
 }
 
 /* Card */
-function PortfolioCard({ image, name, tag, tagline, link }) {
+function PortfolioCard({ id, image, name, tag, tagline, link, hoveredId, setHoveredId }) {
+  const isGrayscale = hoveredId !== null && hoveredId !== id;
+
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
       className="group block cursor-pointer"
+      onMouseEnter={() => setHoveredId(id)}
+      onMouseLeave={() => setHoveredId(null)}
     >
       {/* Image */}
       <div className="overflow-hidden rounded-2xl relative">
+        {/* Grayscale layer (bottom) */}
         <img
           src={image}
           alt={name}
-          className="w-full h-60 sm:h-75 md:h-90 lg:h-105 object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-60 sm:h-75 md:h-90 lg:h-105 object-cover grayscale opacity-50"
+        />
+        {/* Color layer (top) with fade transition */}
+        <img
+          src={image}
+          alt={name}
+          className={`absolute inset-0 w-full h-60 sm:h-75 md:h-90 lg:h-105 object-cover transition-opacity duration-700 ease-in-out ${
+            isGrayscale ? "opacity-0" : "opacity-100"
+          }`}
         />
       </div>
 
