@@ -32,26 +32,28 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="w-full border-t border-white/10 py-28"
+      className="w-full border-t border-white/10 py-16 sm:py-20 md:py-28"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
 
         {/* Section header */}
-        <div className="flex items-start gap-6 mb-20">
-          <span className="text-sm text-white/60 tracking-widest whitespace-nowrap">
+        <div className="flex items-start gap-4 sm:gap-6 mb-12 md:mb-20">
+          <span className="text-xs sm:text-sm text-white/60 tracking-widest whitespace-nowrap">
             04 / SERVICES
           </span>
           <div className="h-px flex-1 bg-white/10 mt-3" />
         </div>
 
         {/* Heading */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-          <h2 className="text-4xl md:text-5xl font-light text-white/70 leading-tight">
-            Services that bring <br />
-            <span className="text-white font-medium">stories to life</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-24">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-light text-white/70 leading-tight">
+            Services that bring{" "}
+            <span className="block text-white font-medium">
+              stories to life
+            </span>
           </h2>
 
-          <p className="text-white/60 max-w-md leading-relaxed">
+          <p className="text-sm sm:text-base text-white/60 max-w-md leading-relaxed">
             Lorem ipsum dolor sit amet consectetur ultrices tempus scelerisque
             et nulla vestibulum lacus ultrices proin nunc semper urna urna nunc
             aliquam eleifend sagittis.
@@ -64,33 +66,30 @@ export default function Services() {
             const isActive = active === service.id;
 
             return (
-              <div
-                key={service.id}
-                className="border-b border-white/10"
-              >
+              <div key={service.id} className="border-b border-white/10">
                 {/* Row */}
                 <button
                   onClick={() => setActive(service.id)}
-                  className="w-full py-10 flex items-center justify-between text-left group"
+                  className="w-full py-6 sm:py-8 md:py-10 flex items-center justify-between text-left group gap-4"
                 >
-                  <div className="flex items-center gap-6">
-                    <span className="text-sm text-white/50">
+                  <div className="flex items-center gap-4 sm:gap-6">
+                    <span className="text-xs sm:text-sm text-white/50">
                       {service.id}
                     </span>
-                    <span className="text-2xl md:text-3xl font-medium">
+                    <span className="text-lg sm:text-2xl md:text-3xl font-medium">
                       {service.title}
                     </span>
                   </div>
 
-                  <span className="text-xl text-white/70 group-hover:translate-x-1 transition">
+                  <span className="text-lg sm:text-xl text-white/70 group-hover:translate-x-1 transition">
                     →
                   </span>
                 </button>
 
                 {/* Expanded content */}
                 {isActive && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 pb-14">
-                    <p className="text-white/60 leading-relaxed max-w-xl">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-14 pb-10 md:pb-14">
+                    <p className="text-sm sm:text-base text-white/60 leading-relaxed max-w-xl">
                       {service.description}
                     </p>
 
@@ -98,7 +97,7 @@ export default function Services() {
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-[320px] object-cover"
+                        className="w-full h-55 sm:h-70 md:h-80 object-cover"
                       />
                     </div>
                   </div>

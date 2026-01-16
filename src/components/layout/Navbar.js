@@ -19,7 +19,7 @@ export default function Navbar() {
         </div>
 
         {/* Nav */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 text-white">
           <nav className="hidden md:flex items-center gap-6 bg-white/10 backdrop-blur px-6 py-3 rounded-full text-sm">
             <a href="#home" onClick={(e) => handleSmoothScroll(e, "#home")} className="hover:text-white/80 cursor-pointer">Home</a>
             <a href="#about" onClick={(e) => handleSmoothScroll(e, "#about")} className="hover:text-white/80 cursor-pointer">About</a>
