@@ -1,7 +1,28 @@
 @import "tailwindcss";
 
-html {
+/* GLOBAL FIX */
+html,
+body {
+  overflow-x: hidden; /* ✅ kill horizontal scrollbar */
   scroll-behavior: smooth;
+}
+
+/* ❌ REMOVE THIS — it causes horizontal overflow */
+/*
+html {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+*/
+
+/* Optional: keep vertical scrollbar thin */
+html {
+  scrollbar-width: thin;
+}
+
+/* Webkit scrollbar track */
+::-webkit-scrollbar-track {
+  background: #000;
 }
 
 :root {
@@ -27,4 +48,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HARD STOP horizontal overflow */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#__next,
+[data-nextjs-scroll-focus-boundary] {
+  overflow-x: hidden;
 }
