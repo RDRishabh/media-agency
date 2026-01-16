@@ -15,7 +15,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <div className="text-xl font-bold">
-          <span className="text-white">▲</span>
+          <img src="/images/logo.png" alt="Logo" className="w-64 h-24 object-contain" />
         </div>
 
         {/* Nav */}
