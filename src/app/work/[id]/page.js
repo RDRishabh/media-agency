@@ -109,9 +109,9 @@ export default function WorkDetail() {
         </div>
 
         {/* IMAGE GRID */}
-        <div className="mt-24 overflow-hidden">
+        {/* <div className="mt-24 overflow-hidden">
           <ImageGrid images={item.images} />
-        </div>
+        </div> */}
       </div>
     </section>
   );
