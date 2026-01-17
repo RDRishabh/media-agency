@@ -97,8 +97,8 @@ export default function HeroAbout() {
             }}
           >
             {/* FADES */}
-            <div className="absolute left-0 inset-y-0 w-72 bg-gradient-to-r from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} />
-            <div className="absolute right-0 inset-y-0 w-72 bg-gradient-to-l from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} />
+            {/* <div className="absolute left-0 inset-y-0 w-72 bg-gradient-to-r from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} />
+            <div className="absolute right-0 inset-y-0 w-72 bg-gradient-to-l from-[#0a0a0a] to-transparent z-20 pointer-events-none" style={{ mixBlendMode: "normal" }} /> */}
 
             {/* TRACK */}
             <div

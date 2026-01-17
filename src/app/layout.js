@@ -29,12 +29,9 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         {/* Page Content */}
-<body>
-  <div className="relative w-full overflow-x-hidden">
-    {children}
-  </div>
-</body>
-
+        <main className="relative w-full overflow-x-hidden">
+          {children}
+        </main>
 
         {/* Global Footer */}
         <Footer />

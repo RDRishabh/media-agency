@@ -112,7 +112,6 @@ export default function Footer() {
                 <a href="tel:+919560823299" className="hover:text-white transition">
                   +91 95608 23299
                 </a>
-                <span>Mumbai, India</span>
               </div>
             </div>
 
