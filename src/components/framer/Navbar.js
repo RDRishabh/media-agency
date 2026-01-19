@@ -21,14 +21,25 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  const handleSmoothScroll = (e, targetId) => {
+  const handleSmoothScroll = async (e, targetId) => {
     e.preventDefault();
+    setIsMenuOpen(false);
+
+    const isHome = window.location.pathname === "/";
+
+    if (!isHome) {
+      // Navigate to home first
+      window.location.href = `/${targetId}`;
+      return;
+    }
+
+    // Already on home → smooth scroll
     document.querySelector(targetId)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
-    setIsMenuOpen(false);
   };
+
 
   const navLinks = [
     { href: "#herosection", label: "Home" },
@@ -42,21 +53,24 @@ export default function Navbar() {
   return (
     <>
       {/* ================= HEADER BAR ================= */}
-  <header className="fixed top-2 md:top-6 left-0 right-0 z-[100] px-4 md:px-6">
+      <header className="fixed top-2 md:top-6 left-0 right-0 z-[100] px-4 md:px-6">
 
         <div className="flex items-center justify-between">
           {/* LOGO */}
           <img
             src="/images/logo.png"
             alt="Let'em Know"
-            className="w-40 md:w-52 object-contain"
+            className="w-40 md:w-52 object-contain cursor-pointer"
+            onClick={() => router.push("/")}
           />
+
 
           {/* MENU BUTTON */}
           <button
             onClick={() => setIsMenuOpen((p) => !p)}
-            className="flex items-center gap-4 text-white tracking-widest select-none"
+            className="flex items-center gap-4 text-white tracking-widest select-none cursor-pointer"
           >
+
             <span className="text-sm">
               {isMenuOpen ? "CLOSE" : "MENU"}
             </span>
@@ -78,11 +92,10 @@ export default function Navbar() {
 
       {/* ================= FULLSCREEN MENU ================= */}
       <div
-        className={`fixed inset-0 z-40 transition-opacity duration-500 ${
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-40 transition-opacity duration-500 ${isMenuOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* BACKDROP */}
         <div
@@ -94,16 +107,11 @@ export default function Navbar() {
         <nav className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-12">
           {navLinks.map((link, index) => (
             <a
-              key={link.href}
-              href={link.href}
+               key={`${link.href}-${index}`}
               onClick={(e) => handleSmoothScroll(e, link.href)}
-              className={`text-4xl md:text-5xl font-light text-white transition-all duration-500 ${
-                isMenuOpen
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
-              }`}
-              style={{ transitionDelay: `${index * 120}ms` }}
+              className="text-4xl md:text-5xl font-light text-white transition-all duration-500 cursor-pointer"
             >
+
               {link.label}
             </a>
           ))}

@@ -84,12 +84,12 @@ export default function Footer() {
                 <a href="#about" onClick={(e) => handleSmoothScroll(e, "#aboutus")} className="hover:text-white transition">About</a>
                 {/* <a href="/portfolio" className="hover:text-white transition">Portfolio</a> */}
                 {/* <a href="#services" onClick={(e) => handleSmoothScroll(e, "#services")} className="hover:text-white transition">Services</a> */}
-               <Link
-  href="/contact"
-  className="hover:text-white transition"
->
-  Contact
-</Link>
+                <Link
+                  href="/contact"
+                  className="hover:text-white transition"
+                >
+                  Contact
+                </Link>
 
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function Footer() {
                   hello@letemknow.media
                 </a>
                 <p>
-                   Utkarsh Raj Giri 
+                  Utkarsh Raj Giri
                 </p>
                 <a href="tel:+918588812345" className="hover:text-white transition">
                   +91 85888 12345

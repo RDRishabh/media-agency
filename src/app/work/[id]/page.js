@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { portfolioItems } from "@/data/portfolio";
 import ImageGrid from "@/components/framer/ImageGrid";
@@ -9,68 +9,64 @@ export default function WorkDetail() {
   const router = useRouter();
   const item = portfolioItems.find(p => p.id === Number(id));
 
-  if (!item) return <div className="text-white p-20">Not found</div>;
+  if (!item) {
+    return <div className="text-white p-20">Not found</div>;
+  }
 
   return (
-    <section className="min-h-screen bg-black text-white pt-32 sm:pt-40 pb-24 overflow-x-hidden">
-      <div className="max-w-[1400px] mx-auto px-6">
-        {/* BACK ARROW */}
+    <section className="bg-black text-white pt-20 sm:pt-28 pb-24 overflow-x-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        
+        {/* BACK BUTTON */}
         <button
           onClick={() => router.push("/")}
-          className="flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 group"
+          className="flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-10 group"
         >
-          <svg 
-            className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
           </svg>
           <span className="text-sm tracking-wide">Back to Home</span>
         </button>
 
         {/* HEADER */}
-        <h1 className="text-5xl font-light mb-16">{item.name}</h1>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-12">
+          {item.name}
+        </h1>
 
-        {/* TOP CONTENT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        {/* CONTENT */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+          
           {/* LEFT */}
           <div>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
               {item.description}
             </p>
-            {/* <p className="mt-8 text-white/60 italic">
-              {item.tagline}
-            </p> */}
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-10">
-            {/* <div>
-              <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
-                Services
-              </h3>
-              <ul className="space-y-2">
-                {item.services.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ul>
-            </div> */}
-
-            {/* Social/Link Icons */}
+          <div className="space-y-8">
             {item.link && item.link !== "#" && (
               <div>
                 <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
                   View Project
                 </h3>
+
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all duration-300 group"
-                >
-                  {/* Instagram Icon */}
+                  className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all duration-300 group">
+                  {/* Instagram */}
                   {item.link.includes("instagram.com") && (
                     <>
                       <svg className="w-6 h-6 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
@@ -109,9 +105,12 @@ export default function WorkDetail() {
         </div>
 
         {/* IMAGE GRID */}
-        {/* <div className="mt-24 overflow-hidden">
-          <ImageGrid images={item.images} />
-        </div> */}
+        {item.images?.length > 0 && (
+          <div className="sm:mt-16">
+            <ImageGrid images={item.images} />
+          </div>
+        )}
+
       </div>
     </section>
   );
