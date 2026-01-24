@@ -5,9 +5,59 @@ import  {portfolioItems} from "@/data/portfolio";
 
 export default function HeroAbout() {
   const trackRef = useRef(null);
+  const sectionRef = useRef(null);
   const xRef = useRef(0);
+  const targetOffsetRef = useRef(0); // Target offset for smooth arrow transitions
   const widthRef = useRef(0);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+  const [leftArrowPos, setLeftArrowPos] = useState({ y: 0 });
+  const [rightArrowPos, setRightArrowPos] = useState({ y: 0 });
+
+  // Handle section mouse move for arrow visibility
+  const handleSectionMouseMove = (e) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    
+    const rect = section.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const width = rect.width;
+    
+    const edgeThreshold = 120; // pixels from edge to trigger arrow
+    
+    if (x < edgeThreshold) {
+      setShowLeftArrow(true);
+      setLeftArrowPos({ y });
+    } else {
+      setShowLeftArrow(false);
+    }
+    
+    if (x > width - edgeThreshold) {
+      setShowRightArrow(true);
+      setRightArrowPos({ y });
+    } else {
+      setShowRightArrow(false);
+    }
+  };
+
+  const handleSectionMouseLeave = () => {
+    setShowLeftArrow(false);
+    setShowRightArrow(false);
+  };
+
+  // Shift carousel left (show previous items)
+  const shiftLeft = () => {
+    const shiftAmount = 450; // roughly one card width + gap
+    targetOffsetRef.current += shiftAmount;
+  };
+
+  // Shift carousel right (show next items)
+  const shiftRight = () => {
+    const shiftAmount = 450; // roughly one card width + gap
+    targetOffsetRef.current -= shiftAmount;
+  };
 
   useEffect(() => {
     const track = trackRef.current;
@@ -15,6 +65,7 @@ export default function HeroAbout() {
 
     let raf;
     const speed = 0.6;
+    const easingSpeed = 0.08; // Easing factor for smooth arrow transitions
 
     const measure = () => {
       widthRef.current = track.scrollWidth / 3;
@@ -28,10 +79,24 @@ export default function HeroAbout() {
         return;
       }
 
+      // Smoothly interpolate targetOffset towards 0
+      if (Math.abs(targetOffsetRef.current) > 0.5) {
+        const delta = targetOffsetRef.current * easingSpeed;
+        xRef.current += delta;
+        targetOffsetRef.current -= delta;
+      } else {
+        targetOffsetRef.current = 0;
+      }
+
+      // Continuous auto-scroll
       xRef.current -= speed;
 
+      // Loop the carousel
       if (Math.abs(xRef.current) >= widthRef.current) {
-        xRef.current = 0;
+        xRef.current += widthRef.current;
+      }
+      if (xRef.current > 0) {
+        xRef.current -= widthRef.current;
       }
 
       track.style.transform = `translateX(${xRef.current}px)`;
@@ -67,7 +132,64 @@ export default function HeroAbout() {
   };
 
   return (
-    <section className="relative w-full bg-[#0a0a0a] overflow-hidden">
+    <section 
+      ref={sectionRef}
+      onMouseMove={handleSectionMouseMove}
+      onMouseLeave={handleSectionMouseLeave}
+      className="relative w-full bg-[#0a0a0a] overflow-hidden"
+    >
+      {/* LEFT ARROW */}
+      <div
+        onClick={shiftLeft}
+        className={`fixed left-8 z-50 cursor-pointer transition-all duration-300 ease-out ${
+          showLeftArrow ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+        }`}
+        style={{
+          top: `${leftArrowPos.y}px`,
+          transform: `translateY(-50%) ${showLeftArrow ? "translateX(0)" : "translateX(-32px)"}`,
+          pointerEvents: showLeftArrow ? "auto" : "none",
+        }}
+      >
+        <div className="group flex items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:scale-110 transition-all duration-300">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2} 
+            stroke="currentColor" 
+            className="w-6 h-6 text-white group-hover:-translate-x-0.5 transition-transform duration-200"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </div>
+      </div>
+
+      {/* RIGHT ARROW */}
+      <div
+        onClick={shiftRight}
+        className={`fixed right-8 z-50 cursor-pointer transition-all duration-300 ease-out ${
+          showRightArrow ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+        }`}
+        style={{
+          top: `${rightArrowPos.y}px`,
+          transform: `translateY(-50%) ${showRightArrow ? "translateX(0)" : "translateX(32px)"}`,
+          pointerEvents: showRightArrow ? "auto" : "none",
+        }}
+      >
+        <div className="group flex items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:scale-110 transition-all duration-300">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2} 
+            stroke="currentColor" 
+            className="w-6 h-6 text-white group-hover:translate-x-0.5 transition-transform duration-200"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
+      </div>
+
       {/* TITLE */}
       <div className="relative z-30 flex items-center justify-center h-screen">
         <h1 className="text-[clamp(3rem,8vw,9rem)] font-light leading-[0.9] text-center">
