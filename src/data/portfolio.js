@@ -17,7 +17,7 @@ export const portfolioItems = [
   {
     id: 2,
     name: "Salescode.ai",
-    image: "/images/portfolio/salescode.jpg",
+    image: "/images/portfolio/salescode.avif",
     tag: "",
     description: "Created quirky, high-energy content to position Salescode.ai as a smarter alternative to traditional SFA tools, simplifying a complex AI product into clear, relatable value propositions for modern sales teams.",
 
@@ -32,7 +32,7 @@ export const portfolioItems = [
   {
     id: 3,
     name: "Masters' Union",
-    image: "/images/portfolio/masters_union.jpeg",
+    image: "/images/portfolio/masters_union.avif",
     tag: "",
     description: "Produced a creator-led challenge video that captured the energy of the Masters’ Union ecosystem, blending ambition, competition, and campus culture into a format built for organic reach and student relatability.",
 
@@ -47,7 +47,7 @@ export const portfolioItems = [
   {
     id: 5,
     name: "Braces",
-    image: "/images/portfolio/braces.jpg",
+    image: "/images/portfolio/braces.avif",
     tag: "",
     description: "Shaped the visual language for a luxury clothing brand, executing premium content that matched its high-end packaging, refined aesthetics, and elevated brand positioning from day one.",
 
@@ -62,7 +62,7 @@ export const portfolioItems = [
   {
     id: 6,
     name: "Backslash",
-    image: "/images/portfolio/backslash/jpg",
+    image: "/images/portfolio/backslash.jpg",
     tag: "",
     description: "Built bold, culture-first content for a streetwear brand, focusing on attitude, drops, and identity to create a strong Gen-Z connection through raw, edgy visuals.",
     tagline: "Built bold, culture-first content for a streetwear brand, focusing on attitude, drops, and identity to create a strong Gen-Z connection through raw, edgy visuals.",
