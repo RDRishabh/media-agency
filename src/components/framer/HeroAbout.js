@@ -134,6 +134,8 @@ export default function HeroAbout() {
   return (
     <section 
       ref={sectionRef}
+      onMouseMove={handleSectionMouseMove}
+      onMouseLeave={handleSectionMouseLeave}
       className="relative w-full bg-[#0a0a0a] overflow-hidden"
     >
       {/* LEFT ARROW */}
@@ -199,8 +201,6 @@ export default function HeroAbout() {
       {/* STAGE */}
       <div
         id="herosection"
-        onMouseMove={handleSectionMouseMove}
-        onMouseLeave={handleSectionMouseLeave}
         className="relative flex items-center justify-center overflow-visible"
         style={{ 
           transform: "perspective(1200px) rotateX(20deg) rotateY(20deg)",
