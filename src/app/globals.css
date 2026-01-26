@@ -24,6 +24,9 @@ html {
 ::-webkit-scrollbar-track {
   background: #000;
 }
+.perspective-1000 {
+  perspective: 1000px;
+}
 
 :root {
   --background: #0a0a0a;
