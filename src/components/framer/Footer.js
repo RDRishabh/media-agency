@@ -81,7 +81,7 @@ export default function Footer() {
               </h4>
               <div className="flex flex-col gap-4 text-sm text-white/70">
                 <a href="#home" onClick={(e) => handleSmoothScroll(e, "#herosection")} className="hover:text-white transition">Home</a>
-                <a href="#about" onClick={(e) => handleSmoothScroll(e, "#aboutus")} className="hover:text-white transition">About</a>
+                {/* <a href="#about" onClick={(e) => handleSmoothScroll(e, "#aboutus")} className="hover:text-white transition">About</a> */}
                 {/* <a href="/portfolio" className="hover:text-white transition">Portfolio</a> */}
                 {/* <a href="#services" onClick={(e) => handleSmoothScroll(e, "#services")} className="hover:text-white transition">Services</a> */}
                 <Link

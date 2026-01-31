@@ -66,7 +66,7 @@ export default function Navbar() {
 
 
           {/* MENU BUTTON */}
-          <button
+          {/* <button
             onClick={() => setIsMenuOpen((p) => !p)}
             className="flex items-center gap-4 text-white tracking-widest select-none cursor-pointer"
           >
@@ -86,7 +86,7 @@ export default function Navbar() {
                 <span className="absolute top-1/2 left-0 w-6 h-[1px] bg-white -rotate-45"></span>
               </span>
             )}
-          </button>
+          </button> */}
         </div>
       </header>
 
