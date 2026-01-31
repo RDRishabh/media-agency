@@ -103,9 +103,9 @@ export default function Footer() {
                 <a href="mailto:hello@letemknow.media" className="hover:text-white transition">
                   hello@letemknow.media
                 </a>
-                <p>
+                {/* <p>
                   Utkarsh Raj Giri
-                </p>
+                </p> */}
                 <a href="tel:+918588812345" className="hover:text-white transition">
                   +91 85888 12345
                 </a>
