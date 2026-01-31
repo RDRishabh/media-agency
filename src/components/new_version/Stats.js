@@ -3,9 +3,8 @@ import { useRef, useEffect, useState } from "react";
 
 export default function Stats() {
   const stats = [
-    { value: "60+", label: "GLOBAL CLIENTS" },
-    { value: "14+", label: "YEARS OF EXPERIENCE" },
-    { value: "16+", label: "AWARDS WON" },
+    { value: "10+", label: "GLOBAL CLIENTS" },
+    { value: "2+", label: "YEARS OF EXPERIENCE" },
     { value: "99%", label: "SUCCESS RATE" },
   ];
 
@@ -40,7 +39,7 @@ export default function Stats() {
 
       const animate = (now) => {
         const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.floor(eased * target);
 
         setCounts((prev) => {
@@ -61,23 +60,44 @@ export default function Stats() {
   return (
     <div
       ref={ref}
-      className="w-full bg-black bg-[url('/images/hero/strip-bg.png')] bg-repeat-x py-12"
+      className="w-full bg-black bg-[url('/images/hero/strip-bg.png')] bg-repeat-x py-16"
     >
-      <div className="flex flex-row justify-between items-center text-center">
+      <div className="
+        max-w-6xl mx-auto
+        grid grid-cols-1 gap-12
+        md:grid-cols-3 md:gap-0
+        text-center
+      ">
         {stats.map((stat, idx) => {
           const suffix = stat.value.replace(/[0-9]/g, "");
 
           return (
             <div
               key={idx}
-              className="flex-1 flex flex-col items-center transition-opacity duration-700"
+              className="
+                flex flex-col items-center
+                md:border-r md:border-white/10
+                last:border-none
+              "
             >
-              <div className="text-white font-bold text-6xl md:text-7xl mb-4">
+              <div className="
+                text-white font-bold
+                text-5xl
+                sm:text-6xl
+                md:text-7xl
+                mb-3
+              ">
                 {counts[idx]}
                 {suffix}
               </div>
 
-              <div className="text-gray-400 text-base md:text-lg tracking-wide">
+              <div className="
+                text-gray-400
+                text-sm
+                sm:text-base
+                md:text-lg
+                tracking-wide
+              ">
                 {stat.label}
               </div>
             </div>

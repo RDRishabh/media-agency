@@ -4,6 +4,24 @@ import { useParams, useRouter } from "next/navigation";
 import { portfolioItems } from "@/data/portfolio";
 import ImageGrid from "@/components/framer/ImageGrid";
 
+
+const Nav = () => (
+  <nav className="fixed top-0 w-full z-40 px-6 py-6 md:px-12 flex justify-between items-start mix-blend-difference text-[#F2F2F2]">
+    <div className="text-xl font-black tracking-tighter uppercase leading-none">
+      Let'em<br/>Know®
+    </div>
+    <div className="flex flex-col items-end gap-2">
+      <div className="flex gap-8 text-xs font-bold tracking-widest uppercase bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+        {['About', 'Work', 'Principles'].map((link) => (
+          <a key={link} href={`#${link.toLowerCase()}`} className="hover:text-[#C13838] transition-colors">
+            {link}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+);
+
 export default function WorkDetail() {
   const { id } = useParams();
   const router = useRouter();
@@ -14,7 +32,8 @@ export default function WorkDetail() {
   }
 
   return (
-    <section className="bg-black text-white pt-20 sm:pt-28 pb-24 overflow-x-hidden">
+    <section className="bg-black text-white pt-20 sm:pt-28  overflow-x-hidden">
+      <Nav/>
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         
         {/* BACK BUTTON */}
@@ -112,6 +131,26 @@ export default function WorkDetail() {
         )}
 
       </div>
+      <section id="about" className=" px-6 md:px-12  text-[#FFFFFF] relative">          
+
+          <footer className="mt-24 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between items-end">
+            <div>
+               <div className="text-[10vw] leading-none font-black tracking-tighter opacity-10">
+                  LET'EM KNOW
+               </div>
+               <p className="text-xs font-mono mt-4">© {new Date().getFullYear()} / Faridabad, India</p>
+            </div>
+            
+            <div className="flex gap-6 mt-8 md:mt-0">
+                {['Instagram', 'Behance', 'Email'].map(link => (
+                    <a key={link} href="#" className="text-lg font-bold uppercase tracking-tight hover:text-[#C13838] transition-colors relative group">
+                        {link}
+                        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#C13838] transition-all group-hover:w-full"></span>
+                    </a>
+                ))}
+            </div>
+          </footer>
+        </section>
     </section>
   );
 }

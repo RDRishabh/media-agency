@@ -25,16 +25,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
-        {/* Global Navbar */}
-        <Navbar />
+        
 
         {/* Page Content */}
         <main className="relative w-full overflow-x-hidden">
           {children}
         </main>
 
-        {/* Global Footer */}
-        <Footer />
       </body>
     </html>
   );

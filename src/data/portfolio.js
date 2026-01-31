@@ -2,7 +2,7 @@ export const portfolioItems = [
   {
     id: 1,
     name: "JMS (Just My Salad)",
-    image: "/images/portfolio/just_my_salad.jpg",
+    image: "/images/portfolio/just_my_salad_2.png",
     year: 2024,
     description: "Built a fresh, modern brand narrative for an aquaponic farm delivering salads straight from farm to Mumbai, turning complex aquaponics into a fun, visual, and consumer-friendly story that made sustainability feel exciting, not technical.",
     tag: "",
@@ -12,7 +12,9 @@ export const portfolioItems = [
     //   "image1.avif","image2.webp","image1.avif"
     // ],
     services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "wide",
+    category: "Branding"
   },
   {
     id: 2,
@@ -27,7 +29,9 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "tall",
+    category: "Branding"
   },
   {
     id: 3,
@@ -42,7 +46,9 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "std",
+    category: "Branding"
   },
   {
     id: 5,
@@ -57,7 +63,9 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "std",
+    category: "Branding"
   },
   {
     id: 6,
@@ -69,7 +77,9 @@ export const portfolioItems = [
     link: "https://www.instagram.com/braces.in?igsh=MWJubTZ5b2huMWMwMg==",
     // images: ["image1.avif","image1.avif","image1.avif"],
     services: ["Branding"],
-    credits: ["Images by Death to Stock"]
+    credits: ["Images by Death to Stock"],
+    size: "tall",
+    category: "Branding"
   },
   {
     id: 7,
@@ -84,12 +94,14 @@ export const portfolioItems = [
       "DetailPage/duke-1.jpg","DetailPage/duke-2.jpeg","DetailPage/duke-3.jpeg","DetailPage/duke-4.jpeg","DetailPage/duke-5.jpeg"
     ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "wide",
+    category: "Branding"
   },
   {
     id: 8,
     name: "Chaayos",
-    image: "/images/portfolio/chaayos.jpg",
+    image: "/images/portfolio/chayoos.png",
     tag: "",
     description: "Worked on internal SOP and process videos to standardize training and communication across teams. (Client work under NDA — visuals not displayed.)",
 
@@ -99,7 +111,9 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "std",
+    category: "Branding"
   },
   {
     id: 9,
@@ -111,12 +125,14 @@ export const portfolioItems = [
     link:"https://www.instagram.com/meetcitadel?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
     // images: ["image1.avif","image1.avif","image1.avif"],
     services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "tall",
+    category: "Branding"
   },
   {
     id: 10,
     name: "Khet",
-    image: "/images/portfolio/khet.jpg",
+    image: "/images/portfolio/khet.png",
     tag: "",
     description: "Vector is a comprehensive branding strategy for a new sports apparel brand that prides itself on innovation and performance. The project included the creation of a striking logo, promotional materials, and a brand manifesto that communicates strength and motion.",
 
@@ -126,7 +142,9 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "tall",
+    category: "Branding"
   },
   {
     id: 11,
@@ -141,6 +159,8 @@ export const portfolioItems = [
     //   "image1.avif","image1.avif","image1.avif"
     // ],
         services:["Branding"],
-    credits:["Images by Death to Stock"]
+    credits:["Images by Death to Stock"],
+    size: "wide",
+    category: "Branding"
   },
 ];
