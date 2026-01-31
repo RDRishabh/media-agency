@@ -10,7 +10,7 @@ const Nav = () => (
     <div className="text-xl font-black tracking-tighter uppercase leading-none">
       Let'em<br/>Know®
     </div>
-    <div className="flex flex-col items-end gap-2">
+    {/* <div className="flex flex-col items-end gap-2">
       <div className="flex gap-8 text-xs font-bold tracking-widest uppercase bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
         {['About', 'Work', 'Principles'].map((link) => (
           <a key={link} href={`#${link.toLowerCase()}`} className="hover:text-[#C13838] transition-colors">
@@ -18,7 +18,7 @@ const Nav = () => (
           </a>
         ))}
       </div>
-    </div>
+    </div> */}
   </nav>
 );
 
@@ -138,17 +138,17 @@ export default function WorkDetail() {
                <div className="text-[10vw] leading-none font-black tracking-tighter opacity-10">
                   LET'EM KNOW
                </div>
-               <p className="text-xs font-mono mt-4">© {new Date().getFullYear()} / Faridabad, India</p>
+               <p className="text-xs font-mono mt-4">© {new Date().getFullYear()} / HELLO@LETEMKNOW.MEDIA</p>
             </div>
             
-            <div className="flex gap-6 mt-8 md:mt-0">
+            {/* <div className="flex gap-6 mt-8 md:mt-0">
                 {['Instagram', 'Behance', 'Email'].map(link => (
                     <a key={link} href="#" className="text-lg font-bold uppercase tracking-tight hover:text-[#C13838] transition-colors relative group">
                         {link}
                         <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#C13838] transition-all group-hover:w-full"></span>
                     </a>
                 ))}
-            </div>
+            </div> */}
           </footer>
         </section>
     </section>
