@@ -3,6 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowDown, ArrowUpRight, Minus, Plus, Circle, Square } from 'lucide-react';
 import Link from "next/link";
 import { portfolioItems } from "@/data/portfolio";
+import {
+  Palette,
+  Filter,
+  Grid3x3
+} from "lucide-react";
 
 /**
  * LET'EM KNOW - Digital Agency Portfolio (v2 - High Voltage)
@@ -12,10 +17,22 @@ import { portfolioItems } from "@/data/portfolio";
 
 const DATA = {
   principles: [
-    { title: "Taste-led", desc: "Aesthetics aren't an afterthought. They are the language." },
-    { title: "Cut the noise", desc: "We remove the fluff to reveal the signal." },
-    { title: "Systems > Chaos", desc: "Creativity needs structure to scale effectively." },
-  ]
+    {
+      title: "Taste-led",
+      desc: "Aesthetics aren't an afterthought. They are the language.",
+      icon: Palette,
+    },
+    {
+      title: "Cut the noise",
+      desc: "We remove the fluff to reveal the signal.",
+      icon: Filter,
+    },
+    {
+      title: "Systems > Chaos",
+      desc: "Creativity needs structure to scale effectively.",
+      icon: Grid3x3,
+    },
+  ],
 };
 
 // --- VISUAL UTILITIES ---
@@ -307,7 +324,7 @@ const App = () => {
                     </p>
                     {/* Hover Decoration */}
                     <div className="absolute right-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block text-[#C13838]">
-                        <ArrowUpRight size={64} strokeWidth={1} />
+                        <p.icon size={56} strokeWidth={1.25} />
                     </div>
                 </div>
               ))}
